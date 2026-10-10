@@ -1,0 +1,7 @@
+{
+  "name": "PennyWise",
+  "description": "AI-powered smart expense tracker for college students. Spend smarter. Save better. Stress less.",
+  "permissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

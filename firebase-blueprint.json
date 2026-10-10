@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile records",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Student transaction and expense records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "type": { "type": "string", "enum": ["expense", "income"] },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "amount", "category", "date"]
+    },
+    "Budget": {
+      "title": "Budget",
+      "description": "Budget limits and thresholds",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "limit": { "type": "number" },
+        "period": { "type": "string", "enum": ["monthly", "weekly"] }
+      },
+      "required": ["userId", "limit"]
+    },
+    "Goal": {
+      "title": "Goal",
+      "description": "Student savings goals and targets",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "targetAmount": { "type": "number" },
+        "currentAmount": { "type": "number" },
+        "deadline": { "type": "string" }
+      },
+      "required": ["userId", "name", "targetAmount"]
+    },
+    "RecurringBill": {
+      "title": "RecurringBill",
+      "description": "Recurring bills and subscriptions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "dueDay": { "type": "number" },
+        "period": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["userId", "name", "amount"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles indexed by UID"
+    },
+    "/users/{userId}/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "User-specific expenses"
+    },
+    "/users/{userId}/budgets/{budgetId}": {
+      "schema": "Budget",
+      "description": "User-specific budgets"
+    },
+    "/users/{userId}/goals/{goalId}": {
+      "schema": "Goal",
+      "description": "User-specific savings goals"
+    },
+    "/users/{userId}/recurring/{recurringId}": {
+      "schema": "RecurringBill",
+      "description": "User-specific recurring subscriptions"
+    }
+  }
+}
